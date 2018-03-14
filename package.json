@@ -1,0 +1,78 @@
+{
+  "name": "ngx-vrview",
+  "version": "0.0.1",
+  "description": "Google VR View wrapper",
+  "keywords": [
+    "angular",
+    "angular5",
+    "Angular 5",
+    "ng2",
+    "vrview",
+    "360"
+  ],
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "tslint --force \"src/**/*.ts\"",
+    "pretest": "npm run lint",
+    "build": "npm run clean && npm run lint && ng-packagr -p ng-package.json",
+    "watch": "webpack --watch --progress --profile",
+    "server": "webpack-dev-server --inline --progress --port 8080",
+    "start": "npm run server",
+    "start:hmr": "npm run server -- --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Fl0r14n/ngx-vrview.git"
+  },
+  "peerDependencies": {
+    "@angular/core": "*"
+  },
+  "author": "Fl0r14n <florian.chis@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "*",
+    "@types/core-js": "*",
+    "@angular/compiler": "*",
+    "@angular/compiler-cli": "*",
+    "@angular/http": "*",
+    "@angular/router": "*",
+    "typescript": "*",
+    "tslint": "*",
+    "codelyzer": "*",
+    "ng-packagr": "*",
+    "rimraf": "*",
+    "webpack": "*",
+    "webpack-cli": "*",
+    "webpack-dev-server": "*",
+    "html-webpack-plugin": "*",
+    "extract-text-webpack-plugin": "next",
+    "awesome-typescript-loader": "*",
+    "ts-loader": "*",
+    "angular2-template-loader": "*",
+    "@angularclass/hmr": "*",
+    "@angularclass/hmr-loader": "*",
+    "file-loader": "*",
+    "json-loader": "*",
+    "raw-loader": "*",
+    "sass-loader": "*",
+    "node-sass": "*",
+    "null-loader": "*",
+    "style-loader": "*",
+    "css-loader": "*",
+    "postcss-loader": "*",
+    "tslint-loader": "*",
+    "ts-helpers": "*"
+  },
+  "dependencies": {
+    "@angular/common": "*",
+    "@angular/core": "*",
+    "@angular/forms": "*",
+    "@angular/platform-browser": "*",
+    "@angular/platform-browser-dynamic": "*",
+    "rxjs": "*",
+    "zone.js": "*"
+  },
+  "homepage": "https://github.com/Fl0r14n/ngx-vrview"
+}
