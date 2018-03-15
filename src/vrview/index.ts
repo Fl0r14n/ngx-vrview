@@ -1,9 +1,11 @@
 import {AfterViewInit, Component, ElementRef, Input, NgModule, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import 'vrview';
 
 export interface Scene {
   [key: string]: {
-    image: string;
+    image?: string;
+    video?: string;
     hotspots: Hotspot
   }
 }
@@ -88,7 +90,7 @@ export interface VRPlayerOptions {
 @Component({
   selector: 'vr-view',
   template: `
-    <div #vrview></div>
+    <div id="vrview" #viewer></div>
   `
 })
 export class VRViewComponent implements AfterViewInit {
@@ -100,22 +102,63 @@ export class VRViewComponent implements AfterViewInit {
   @Input()
   height: number;
 
-  @ViewChild('vrview')
+  @ViewChild('viewer')
   element: ElementRef;
   private player: any;
 
+  constructor() {
+
+  }
+
   ngAfterViewInit(): void {
     this.player = new VRView.Player(`#${this.element.nativeElement.id}`, {
-      image: 'assets/blank.png',
+      image: 'public/BarcelonaGreenLineMetro.jpg',
       width: this.width,
       height: this.height
     });
+    this.player.on('ready', () => {
+      this.loadScene(this.getFirstScene());
+      this.player.on('click', (event) => event.id ? this.loadScene(event.id) : '');
+    });
+  }
+  loadScene(id) {
+    if (id) {
+      // Set the image
+      this.player.setContent({
+        image: this.scenes[id].image,
+        //preview: this.scenes[id].preview,
+      });
+      // Add all the hotspots for the scene
+      let newScene = this.scenes[id];
+      let sceneHotspots = Object.keys(newScene.hotspots);
+      for (let i = 0; i < sceneHotspots.length; i++) {
+        let hotspotKey = sceneHotspots[i];
+        let hotspot = newScene.hotspots[hotspotKey];
+
+        this.player.addHotspot(hotspotKey, {
+          pitch: hotspot.pitch,
+          yaw: hotspot.yaw,
+          radius: hotspot.radius,
+          distance: hotspot.distance
+        });
+      }
+    }
+  }
+
+  getFirstScene() {
+    for (let key in this.scenes) {
+      if (this.scenes.hasOwnProperty(key)) {
+        return key;
+      }
+    }
+    return 0;
   }
 }
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+
   ],
   declarations: [
     VRViewComponent
