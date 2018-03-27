@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, NgModule, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import 'vrview';
+// require('vrview/build/vrview.min.js')
+// import 'vrview';
 
 export interface Scene {
   [key: string]: {
@@ -112,7 +113,7 @@ export class VRViewComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.player = new VRView.Player(`#${this.element.nativeElement.id}`, {
-      image: 'public/BarcelonaGreenLineMetro.jpg',
+      image: 'BarcelonaGreenLineMetro.jpg',
       width: this.width,
       height: this.height
     });
