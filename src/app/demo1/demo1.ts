@@ -11,7 +11,7 @@ export class Demo1 {
 
   scenes: Scene = {
     world: {
-      image: 'assets/1.jpg',
+      image: 'public/BarcelonaGreenLineMetro.jpg',
       hotspots: {
         green_area: {
           pitch: 10,
@@ -22,7 +22,7 @@ export class Demo1 {
       }
     },
     green_area: {
-      image: 'assets/2.jpg',
+      image: '',
       hotspots: {
         world: {
           pitch: 20,

@@ -6,6 +6,8 @@ import {createNewHosts, removeNgStyles} from '@angularclass/hmr';
 
 import {AppComponent} from './app.component';
 import {Demo1} from './demo1/demo1';
+import {VRViewModule} from '../vrview/index';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import {Demo1} from './demo1/demo1';
     BrowserModule,
     CommonModule,
     FormsModule,
+    VRViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]
